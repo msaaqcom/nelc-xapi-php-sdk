@@ -2,18 +2,16 @@
 
 namespace Msaaq\Nelc\Statements;
 
-use Msaaq\Nelc\Common\BrowserInformation;
 use Msaaq\Nelc\Common\Module;
+use Msaaq\Nelc\Enums\Extension;
 use Msaaq\Nelc\Enums\Verb;
 use Msaaq\Nelc\Interfaces\StatementInterface;
 
-class WatchedBaseStatement extends BaseStatement implements StatementInterface
+class EarnedStatement extends Statement implements StatementInterface
 {
-    public BrowserInformation $browserInformation;
-
     public Module $parent;
 
-    public bool $completed;
+    public string $certificateUrl;
 
     public function toArray(): array
     {
@@ -21,21 +19,19 @@ class WatchedBaseStatement extends BaseStatement implements StatementInterface
             'actor' => $this->actor->toArray(),
             'object' => $this->module->toArray(),
             'verb' => [
-                'id' => Verb::WATCHED->value,
-                'display' => ['en-US' => 'watched'],
+                'id' => Verb::EARNED->value,
+                'display' => ['en-US' => 'earned'],
             ],
             'context' => [
                 'instructor' => $this->instructor->toArray(),
                 'platform' => $this->platform,
                 'language' => $this->language->value,
-                'extensions' => $this->browserInformation->toArray(),
+                'extensions' => $this->certificateUrl ? [
+                    Extension::JWS_CERTIFICATE_LOCATION->value => $this->certificateUrl,
+                ] : [],
                 'contextActivities' => [
                     'parent' => $this->parent->toArray(),
                 ],
-            ],
-            'result' => [
-                'completion' => $this->completed,
-                'duration' => $this->module->getDuration(),
             ],
             'timestamp' => $this->getTimestamp(),
         ];

@@ -7,7 +7,7 @@ use Msaaq\Nelc\Common\Module;
 use Msaaq\Nelc\Enums\Verb;
 use Msaaq\Nelc\Interfaces\StatementInterface;
 
-class CompletedBaseStatement extends BaseStatement implements StatementInterface
+class WatchedStatement extends Statement implements StatementInterface
 {
     public BrowserInformation $browserInformation;
 
@@ -21,8 +21,8 @@ class CompletedBaseStatement extends BaseStatement implements StatementInterface
             'actor' => $this->actor->toArray(),
             'object' => $this->module->toArray(),
             'verb' => [
-                'id' => Verb::COMPLETED->value,
-                'display' => ['en-US' => 'completed'],
+                'id' => Verb::WATCHED->value,
+                'display' => ['en-US' => 'watched'],
             ],
             'context' => [
                 'instructor' => $this->instructor->toArray(),
