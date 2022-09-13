@@ -7,7 +7,7 @@ use Msaaq\Nelc\Interfaces\StatementInterface;
 
 class StatementClient
 {
-    const STATEMENTS_PATH = "statements";
+    const STATEMENTS_PATH = 'statements';
 
     private string $platform;
 
