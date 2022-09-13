@@ -9,7 +9,7 @@ use Msaaq\Nelc\Common\Module;
 use Msaaq\Nelc\Enums\Language;
 use Msaaq\Nelc\Interfaces\StatementInterface;
 
-class Statement
+class BaseStatement
 {
     public Actor $actor;
 

@@ -2,15 +2,16 @@
 
 namespace Msaaq\Nelc\Statements;
 
-use Msaaq\Nelc\Common\Score;
+use Msaaq\Nelc\Common\Module;
+use Msaaq\Nelc\Enums\Extension;
 use Msaaq\Nelc\Enums\Verb;
 use Msaaq\Nelc\Interfaces\StatementInterface;
 
-class RatedStatement extends Statement implements StatementInterface
+class EarnedBaseStatement extends BaseStatement implements StatementInterface
 {
-    public Score $rate;
+    public Module $parent;
 
-    public string $rateContent;
+    public string $certificateUrl;
 
     public function toArray(): array
     {
@@ -18,17 +19,19 @@ class RatedStatement extends Statement implements StatementInterface
             'actor' => $this->actor->toArray(),
             'object' => $this->module->toArray(),
             'verb' => [
-                'id' => Verb::RATED->value,
-                'display' => ['en-US' => 'rated'],
+                'id' => Verb::EARNED->value,
+                'display' => ['en-US' => 'earned'],
             ],
             'context' => [
                 'instructor' => $this->instructor->toArray(),
                 'platform' => $this->platform,
                 'language' => $this->language->value,
-            ],
-            'result' => [
-                'score' => $this->rate->toArray(),
-                'response' => $this->rateContent,
+                'extensions' => $this->certificateUrl ? [
+                    Extension::JWS_CERTIFICATE_LOCATION->value => $this->certificateUrl,
+                ] : [],
+                'contextActivities' => [
+                    'parent' => $this->parent->toArray(),
+                ],
             ],
             'timestamp' => $this->getTimestamp(),
         ];

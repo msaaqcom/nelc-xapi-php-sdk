@@ -5,14 +5,14 @@ namespace Msaaq\Nelc\Statements;
 use Msaaq\Nelc\Enums\Verb;
 use Msaaq\Nelc\Interfaces\StatementInterface;
 
-class InitializedStatement extends Statement implements StatementInterface
+class RegisteredBaseStatement extends BaseStatement implements StatementInterface
 {
     public function toArray(): array
     {
         return [
             'verb' => [
-                'id' => Verb::INITIALIZED->value,
-                'display' => ['en-US' => 'initialized'],
+                'id' => Verb::REGISTERED->value,
+                'display' => ['en-US' => 'registered'],
             ],
             'actor' => $this->actor->toArray(),
             'object' => $this->module->toArray(),

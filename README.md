@@ -25,7 +25,7 @@ use Msaaq\Nelc\Common\Module;
 use Msaaq\Nelc\Enums\ActivityType;
 use Msaaq\Nelc\Enums\Language;
 use Msaaq\Nelc\StatementClient;
-use Msaaq\Nelc\Statements\InitializedStatement;
+use Msaaq\Nelc\Statements\InitializedBaseStatement;
 
 $client = new ApiClient(
     key: 'username', // required
@@ -33,7 +33,7 @@ $client = new ApiClient(
     isSandbox: true, // optional, default is false
 );
 
-$statement = new InitializedStatement();
+$statement = new InitializedBaseStatement();
 $statement->language = Language::ARABIC;
 $statement->timestamp = '2021-01-01 00:00:00';
 
