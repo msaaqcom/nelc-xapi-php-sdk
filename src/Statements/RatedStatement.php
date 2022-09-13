@@ -6,7 +6,7 @@ use Msaaq\Nelc\Common\Score;
 use Msaaq\Nelc\Enums\Verb;
 use Msaaq\Nelc\Interfaces\StatementInterface;
 
-class RatedStatement extends Statement implements StatementInterface
+class RatedStatement extends BaseStatement implements StatementInterface
 {
     public Score $rate;
 

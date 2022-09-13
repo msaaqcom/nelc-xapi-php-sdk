@@ -5,7 +5,7 @@ namespace Msaaq\Nelc\Statements;
 use Msaaq\Nelc\Enums\Verb;
 use Msaaq\Nelc\Interfaces\StatementInterface;
 
-class InitializedStatement extends Statement implements StatementInterface
+class InitializedStatement extends BaseStatement implements StatementInterface
 {
     public function toArray(): array
     {

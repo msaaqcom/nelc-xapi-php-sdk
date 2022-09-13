@@ -8,7 +8,7 @@ use Msaaq\Nelc\Enums\Extension;
 use Msaaq\Nelc\Enums\Verb;
 use Msaaq\Nelc\Interfaces\StatementInterface;
 
-class AttemptedStatement extends Statement implements StatementInterface
+class AttemptedStatement extends BaseStatement implements StatementInterface
 {
     public BrowserInformation $browserInformation;
 

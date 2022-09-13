@@ -7,7 +7,7 @@ use Msaaq\Nelc\Enums\Extension;
 use Msaaq\Nelc\Enums\Verb;
 use Msaaq\Nelc\Interfaces\StatementInterface;
 
-class EarnedStatement extends Statement implements StatementInterface
+class EarnedStatement extends BaseStatement implements StatementInterface
 {
     public Module $parent;
 

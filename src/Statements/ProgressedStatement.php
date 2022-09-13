@@ -5,7 +5,7 @@ namespace Msaaq\Nelc\Statements;
 use Msaaq\Nelc\Enums\Verb;
 use Msaaq\Nelc\Interfaces\StatementInterface;
 
-class ProgressedStatement extends Statement implements StatementInterface
+class ProgressedStatement extends BaseStatement implements StatementInterface
 {
     public bool $completed;
 

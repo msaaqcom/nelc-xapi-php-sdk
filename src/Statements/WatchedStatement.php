@@ -7,7 +7,7 @@ use Msaaq\Nelc\Common\Module;
 use Msaaq\Nelc\Enums\Verb;
 use Msaaq\Nelc\Interfaces\StatementInterface;
 
-class WatchedStatement extends Statement implements StatementInterface
+class WatchedStatement extends BaseStatement implements StatementInterface
 {
     public BrowserInformation $browserInformation;
 
