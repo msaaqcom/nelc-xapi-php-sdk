@@ -1,12 +1,12 @@
 {
-    "name": "msaaq/nelc-xapi-sdk",
+    "name": "msaaq/nelc-xapi-php-sdk",
     "description": "xAPI Integration with Saudi NELC (National Center for e-Learning)",
     "keywords": [
         "msaaqcom",
-        "nelc-xapi-sdk",
+        "nelc-xapi-php-sdk",
         "xapi-statements"
     ],
-    "homepage": "https://github.com/msaaqcom/nelc-xapi-sdk",
+    "homepage": "https://github.com/msaaqcom/nelc-xapi-php-sdk",
     "license": "MIT",
     "authors": [
         {
