@@ -3,7 +3,7 @@
 namespace Msaaq\Nelc;
 
 use GuzzleHttp\Client as Http;
-use Msaaq\Nelc\Interfaces\StatementInterface;
+use GuzzleHttp\RequestOptions;
 
 class ApiClient
 {
@@ -16,7 +16,6 @@ class ApiClient
     public function __construct(
         private readonly string $key,
         private readonly string $secret,
-        private readonly string $platform,
         private readonly bool $isSandbox = false,
     ) {
         $this->client = new Http([
@@ -24,6 +23,7 @@ class ApiClient
             'auth' => [$this->key, $this->secret],
             'headers' => [
                 'Content-Type' => 'application/json',
+                'Accept' => 'application/json',
             ],
         ]);
     }
@@ -33,17 +33,10 @@ class ApiClient
         return new self(...func_get_args());
     }
 
-    public function sendStatement(StatementInterface $statement)
+    public function request(string $method, string $path, array $payload)
     {
-        $payload = $statement->setPlatform($this->platform)->toArray();
-        try {
-            $response = $this->client->post('statements', [
-                'json' => $payload,
-            ]);
-
-            return json_decode($response->getBody()->getContents(), true) ?? [];
-        } catch (\Exception $e) {
-            throw new \Exception($e->getMessage(), $e->getCode());
-        }
+        return $this->client->request($method, $path, [
+            RequestOptions::JSON => $payload,
+        ]);
     }
 }
