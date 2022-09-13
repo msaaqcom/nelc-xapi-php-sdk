@@ -38,7 +38,7 @@ class ApiClient
         $payload = $statement->setPlatform($this->platform)->toArray();
         try {
             $response = $this->client->post('statements', [
-                'json' => $payload
+                'json' => $payload,
             ]);
 
             return json_decode($response->getBody()->getContents(), true) ?? [];
