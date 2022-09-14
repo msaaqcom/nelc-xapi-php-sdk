@@ -5,7 +5,8 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/msaaq/nelc-xapi-php-sdk/Fix%20PHP%20code%20style%20issues?label=code%20style)](https://github.com/msaaq/nelc-xapi-php-sdk/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/msaaq/nelc-xapi-php-sdk.svg?style=flat-square)](https://packagist.org/packages/msaaq/nelc-xapi-php-sdk)
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+The base concept of this package is to provide a simple way to send xAPI statements to Saudi NELC (National Center for
+e-Learning) LRS (Learning Record Store).
 
 ## Installation
 
@@ -16,9 +17,6 @@ composer require msaaq/nelc-xapi-php-sdk
 ```
 
 ## Usage
-
-The base concept of this package is to provide a simple way to send xAPI statements to Saudi NELC (National Center for
-e-Learning) LRS (Learning Record Store).
 
 ## 1. Create Api Client.
 
@@ -392,22 +390,75 @@ $statement->module->activityType = ActivityType::COURSE;
 var_dump($statementClient->send($statement));
 ```
 
-## Changelog
+### Rated Statement
 
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+The `RatedStatement` is used to indicate that the actor (student) has rated the object (course).
 
-## Contributing
+```php
+use Msaaq\Nelc\Common\Module;
+use Msaaq\Nelc\Common\Score;
+use Msaaq\Nelc\Enums\ActivityType;
+use Msaaq\Nelc\Enums\Language;
+use Msaaq\Nelc\Statements\RatedStatement;
 
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+$statement = new RatedStatement();
+$statement->language = Language::ENGLISH;
+$statement->timestamp = '2022-09-14T10:33:43+03:00';
 
-## Security Vulnerabilities
+$statement->actor = $actor;
+$statement->instructor = $instructor;
 
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
+// The course that student rated
+$statement->module = new Module();
+$statement->module->url = 'https://academy.msaaq.com/courses/how-to-create-professional-course';
+$statement->module->title = 'How to create professional course';
+$statement->module->description = 'This series will cover the most important principles of course making, marketing and content preparation.';
+$statement->module->language = $statement->language;
+$statement->module->activityType = ActivityType::COURSE;
 
-## Credits
+$statement->rate = new Score();
+$statement->rate->min = 1;
+$statement->rate->max = 5;
+$statement->rate->score = 3; // 3 stars out of 5
 
-- [Hussam Abd](https://github.com/hussam3bd)
-- [All Contributors](../../contributors)
+$statement->rateContent = 'This course is very good.';
+
+var_dump($statementClient->send($statement));
+```
+
+### Earned Statement
+
+The `EarnedStatement` is used to indicate that the actor (student) has earned the object (certificate).
+
+```php
+use Msaaq\Nelc\Common\Module;
+use Msaaq\Nelc\Common\Score;
+use Msaaq\Nelc\Enums\ActivityType;
+use Msaaq\Nelc\Enums\Language;
+use Msaaq\Nelc\Statements\EarnedStatement;
+
+$statement = new EarnedStatement();
+$statement->language = Language::ENGLISH;
+$statement->timestamp = '2022-09-14T10:33:43+03:00';
+
+$statement->actor = $actor;
+$statement->instructor = $instructor;
+
+// The course that student earned the certificate
+$statement->parent = $parent;
+
+// The certificate that student earned
+$statement->module = new Module();
+$statement->module->url = 'https://academy.msaaq.com/courses/how-to-create-professional-course';
+$statement->module->title = 'How to create professional course certificate';
+$statement->module->description = 'This certificate is awarded to students who completed the course.';
+$statement->module->language = $statement->language;
+$statement->module->activityType = ActivityType::CERTIFICATE;
+
+$statement->certificateUrl = 'path to download the certificate';
+
+var_dump($statementClient->send($statement));
+```
 
 ## License
 
