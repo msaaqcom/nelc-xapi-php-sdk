@@ -8,7 +8,7 @@ class Actor
 {
     public string $email;
 
-    public string|int $national_id;
+    public string $national_id;
 
     public function toArray(): array
     {
