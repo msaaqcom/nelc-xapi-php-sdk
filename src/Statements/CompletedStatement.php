@@ -9,11 +9,9 @@ use Msaaq\Nelc\Interfaces\StatementInterface;
 
 class CompletedStatement extends BaseStatement implements StatementInterface
 {
-    public BrowserInformation $browserInformation;
+    public BrowserInformation|null $browserInformation = null;
 
-    public Module $parent;
-
-    public bool $completed;
+    public Module|null $parent = null;
 
     public function toArray(): array
     {
@@ -28,14 +26,10 @@ class CompletedStatement extends BaseStatement implements StatementInterface
                 'instructor' => $this->instructor->toArray(),
                 'platform' => $this->platform,
                 'language' => $this->language->value,
-                'extensions' => $this->browserInformation->toArray(),
-                'contextActivities' => [
+                'extensions' => $this->browserInformation ? $this->browserInformation->toArray() : [],
+                'contextActivities' => $this->parent ? [
                     'parent' => $this->parent->toArray(),
-                ],
-            ],
-            'result' => [
-                'completion' => $this->completed,
-                'duration' => $this->module->getDuration(),
+                ] : [],
             ],
             'timestamp' => $this->getTimestamp(),
         ];
