@@ -18,12 +18,10 @@ class Score
     public function toArray(): array
     {
         return [
-            'score' => [
-                'scaled' => $this->scale(),
-                'raw' => $this->score,
-                'max' => $this->max,
-                'min' => $this->min,
-            ],
+            'scaled' => $this->scale(),
+            'raw' => $this->score,
+            'max' => $this->max,
+            'min' => $this->min,
         ];
     }
 }
