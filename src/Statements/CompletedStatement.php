@@ -15,7 +15,7 @@ class CompletedStatement extends BaseStatement implements StatementInterface
 
     public function toArray(): array
     {
-        return [
+        $array = [
             'actor' => $this->actor->toArray(),
             'object' => $this->module->toArray(),
             'verb' => [
@@ -26,12 +26,18 @@ class CompletedStatement extends BaseStatement implements StatementInterface
                 'instructor' => $this->instructor->toArray(),
                 'platform' => $this->platform,
                 'language' => $this->language->value,
-                'extensions' => $this->browserInformation ? $this->browserInformation->toArray() : [],
-                'contextActivities' => $this->parent ? [
-                    'parent' => $this->parent->toArray(),
-                ] : [],
             ],
             'timestamp' => $this->getTimestamp(),
         ];
+
+        if ($this->parent) {
+            $array['context']['contextActivities']['parent'] = $this->parent->toArray();
+        }
+
+        if ($this->browserInformation) {
+            $array['context']['extensions'] = $this->browserInformation->toArray();
+        }
+
+        return $array;
     }
 }
