@@ -19,7 +19,7 @@ class BaseStatement
 
     public Module $module;
 
-    public string $platform;
+    public ?string $platform = null;
 
     public string $timestamp;
 
@@ -28,6 +28,11 @@ class BaseStatement
         $this->platform = $platform;
 
         return $this;
+    }
+
+    public function getPlatform(): ?string
+    {
+        return $this->platform;
     }
 
     public function getTimestamp(): string
