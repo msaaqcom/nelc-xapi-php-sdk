@@ -31,9 +31,9 @@ class AttemptedStatement extends BaseStatement implements StatementInterface
             ],
             'context' => [
                 'instructor' => $this->instructor->toArray(),
-                'platform' => $this->platform,
+                'platform' => $this->platform->identifier,
                 'language' => $this->language->value,
-                'extensions' => array_merge($this->browserInformation->toArray(), [
+                'extensions' => array_merge($this->browserInformation->toArray(), $this->sharedExtensions(), [
                     Extension::ATTEMPT_ID->value => $this->attemptId,
                 ]),
                 'contextActivities' => [

@@ -6,6 +6,8 @@ use Carbon\Carbon;
 use Msaaq\Nelc\Common\Actor;
 use Msaaq\Nelc\Common\Instructor;
 use Msaaq\Nelc\Common\Module;
+use Msaaq\Nelc\Common\Platform;
+use Msaaq\Nelc\Enums\Extension;
 use Msaaq\Nelc\Enums\Language;
 use Msaaq\Nelc\Interfaces\StatementInterface;
 
@@ -19,18 +21,25 @@ class BaseStatement
 
     public Module $module;
 
-    public ?string $platform = null;
+    public Platform $platform;
 
     public string $timestamp;
 
-    public function setPlatform(string $platform): StatementInterface
+    public function sharedExtensions(): array
+    {
+        return [
+            Extension::PLATFORM->value => $this->platform->toArray()
+        ];
+    }
+
+    public function setPlatform(Platform $platform): StatementInterface
     {
         $this->platform = $platform;
 
         return $this;
     }
 
-    public function getPlatform(): ?string
+    public function getPlatform(): Platform
     {
         return $this->platform;
     }

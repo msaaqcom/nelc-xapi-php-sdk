@@ -24,11 +24,11 @@ class EarnedStatement extends BaseStatement implements StatementInterface
             ],
             'context' => [
                 'instructor' => $this->instructor->toArray(),
-                'platform' => $this->platform,
+                'platform' => $this->platform->identifier,
                 'language' => $this->language->value,
-                'extensions' => $this->certificateUrl ? [
+                'extensions' => array_merge($this->sharedExtensions(), $this->certificateUrl ? [
                     Extension::JWS_CERTIFICATE_LOCATION->value => $this->certificateUrl,
-                ] : [],
+                ] : []),
                 'contextActivities' => [
                     'parent' => $this->parent->toArray(),
                 ],

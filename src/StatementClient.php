@@ -3,13 +3,14 @@
 namespace Msaaq\Nelc;
 
 use Exception;
+use Msaaq\Nelc\Common\Platform;
 use Msaaq\Nelc\Interfaces\StatementInterface;
 
 class StatementClient
 {
     const STATEMENTS_PATH = 'statements';
 
-    private string $platform;
+    private Platform $platform;
 
     public function __construct(private readonly ApiClient $apiClient)
     {
@@ -20,7 +21,7 @@ class StatementClient
         return new self($client);
     }
 
-    public function setPlatform(string $string): self
+    public function setPlatform(Platform $string): self
     {
         $this->platform = $string;
 

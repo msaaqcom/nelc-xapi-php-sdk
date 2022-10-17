@@ -2,6 +2,7 @@
 
 namespace Msaaq\Nelc\Statements;
 
+use Msaaq\Nelc\Enums\Extension;
 use Msaaq\Nelc\Enums\Verb;
 use Msaaq\Nelc\Interfaces\StatementInterface;
 
@@ -18,8 +19,9 @@ class InitializedStatement extends BaseStatement implements StatementInterface
             'object' => $this->module->toArray(),
             'context' => [
                 'instructor' => $this->instructor->toArray(),
-                'platform' => $this->platform,
+                'platform' => $this->platform->identifier,
                 'language' => $this->language->value,
+                'extensions' => $this->sharedExtensions(),
             ],
             'timestamp' => $this->getTimestamp(),
         ];

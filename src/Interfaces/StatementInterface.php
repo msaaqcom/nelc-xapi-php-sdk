@@ -2,11 +2,13 @@
 
 namespace Msaaq\Nelc\Interfaces;
 
+use Msaaq\Nelc\Common\Platform;
+
 interface StatementInterface
 {
-    public function setPlatform(string $platform): self;
+    public function setPlatform(Platform $platform): self;
 
-    public function getPlatform(): ?string;
+    public function getPlatform(): Platform;
 
     public function toArray(): array;
 }

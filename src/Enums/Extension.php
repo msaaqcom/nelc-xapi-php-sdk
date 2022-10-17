@@ -19,4 +19,6 @@ enum Extension: string
      * Context extension containing the URL of a public certificate that can be used to verify the signature of the statement.
      */
     case JWS_CERTIFICATE_LOCATION = 'http://id.tincanapi.com/extension/jws-certificate-location';
+
+    case PLATFORM = 'https://nelc.gov.sa/extensions/platform';
 }

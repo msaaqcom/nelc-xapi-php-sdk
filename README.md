@@ -41,7 +41,7 @@ $client = new ApiClient(
     isSandbox: true, // optional, default is false
 );
 
-$platformName = 'your-platform-name'; // required
+$platform = new \Msaaq\Nelc\Common\Platform($identifier = 'platform-identifier', $name = 'platform-name', $language = \Msaaq\Nelc\Enums\Language::ARABIC); // required
 ```
 
 After we created our client, we can use it to send statements to the NELC LRS.
@@ -51,12 +51,12 @@ After we created our client, we can use it to send statements to the NELC LRS.
 To send a statement to the NELC LRS, we need to create an instance of the `StatementClient` class.
 
 The `StatementClient` required an instance of the `ApiClient` that we've created in the previous step, and
-the `$platformName`.
+the `$platform`.
 
 ```php
 use Msaaq\Nelc\StatementClient;
 
-$statementClient = StatementClient::setClient($client)->setPlatform($platformName);
+$statementClient = StatementClient::setClient($client)->setPlatform($platform);
 ```
 
 Now we are almost ready to send our first statement to the NELC LRS, we just need to create an instance of

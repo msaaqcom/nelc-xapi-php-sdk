@@ -18,8 +18,9 @@ class RegisteredStatement extends BaseStatement implements StatementInterface
             'object' => $this->module->toArray(),
             'context' => [
                 'instructor' => $this->instructor->toArray(),
-                'platform' => $this->platform,
+                'platform' => $this->platform->identifier,
                 'language' => $this->language->value,
+                'extensions' => $this->sharedExtensions(),
             ],
             'timestamp' => $this->getTimestamp(),
         ];
