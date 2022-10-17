@@ -9,7 +9,7 @@ class ApiClient
 {
     const STAGING_API_BASE_URL = 'https://lrs.nelc.gov.sa/staging-lrs/xapi/';
 
-    const PRODUCTION_API_BASE_URL = 'https://lrs.nelc.gov.sa/lrs/xapi/';
+    const PRODUCTION_API_BASE_URL = 'https://lrs.nelc.gov.sa/lrs-nelc/xapi/';
 
     private Http $client;
 
