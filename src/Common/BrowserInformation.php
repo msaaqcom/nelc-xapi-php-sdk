@@ -6,11 +6,11 @@ use Msaaq\Nelc\Enums\Extension;
 
 class BrowserInformation
 {
-    public string $family;
+    public string $family = '';
 
-    public string $name;
+    public string $name = '';
 
-    public string $version;
+    public string $version = '';
 
     public function toArray(): array
     {
