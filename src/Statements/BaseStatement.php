@@ -23,7 +23,7 @@ class BaseStatement
 
     public Platform $platform;
 
-    public string $timestamp;
+    public ?string $timestamp = null;
 
     public function sharedExtensions(): array
     {
