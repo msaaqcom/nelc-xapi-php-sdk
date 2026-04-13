@@ -12,7 +12,7 @@ class Module
 
     public string $title;
 
-    public string $description;
+    public string $description = '';
 
     public Score $score;
 
@@ -22,8 +22,6 @@ class Module
 
     /**
      * Duration in seconds
-     *
-     * @var float|int
      */
     public float|int $duration;
 
@@ -39,13 +37,18 @@ class Module
 
     public function toArray(): array
     {
+        $definition = [
+            'name' => [$this->language->value => $this->title],
+            'type' => $this->activityType->value,
+        ];
+
+        if ($this->description !== '') {
+            $definition['description'] = [$this->language->value => $this->description];
+        }
+
         return [
             'id' => $this->url,
-            'definition' => [
-                'name' => [$this->language->value => $this->title],
-                'description' => [$this->language->value => $this->description],
-                'type' => $this->activityType->value,
-            ],
+            'definition' => $definition,
             'objectType' => ObjectType::ACTIVITY->value,
         ];
     }
