@@ -24,6 +24,7 @@ class ApiClient
             'headers' => [
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
+                'X-Experience-API-Version' => '1.0.3',
             ],
         ]);
     }
