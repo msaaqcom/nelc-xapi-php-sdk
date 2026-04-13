@@ -18,6 +18,10 @@ class RegisteredStatement extends BaseStatement implements StatementInterface
 
     public string $dateOfBirth = '';
 
+    public string $lmsUrl = '';
+
+    public string $programUrl = '';
+
     public function toArray(): array
     {
         $extensions = $this->sharedExtensions();
@@ -40,6 +44,14 @@ class RegisteredStatement extends BaseStatement implements StatementInterface
 
         if ($this->dateOfBirth) {
             $extensions[Extension::DATE_OF_BIRTH->value] = $this->dateOfBirth;
+        }
+
+        if ($this->lmsUrl) {
+            $extensions[Extension::LMS_URL->value] = $this->lmsUrl;
+        }
+
+        if ($this->programUrl) {
+            $extensions[Extension::PROGRAM_URL->value] = $this->programUrl;
         }
 
         return [

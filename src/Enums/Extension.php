@@ -31,4 +31,8 @@ enum Extension: string
     case LEARNER_NATIONALITY = 'https://nelc.gov.sa/extensions/learner_nationality';
 
     case DATE_OF_BIRTH = 'https://nelc.gov.sa/extensions/date_of_birth';
+
+    case LMS_URL = 'https://nelc.gov.sa/extensions/lms_url';
+
+    case PROGRAM_URL = 'https://nelc.gov.sa/extensions/program_url';
 }
