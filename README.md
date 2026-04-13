@@ -41,7 +41,14 @@ $client = new ApiClient(
     isSandbox: true, // optional, default is false
 );
 
-$platform = new \Msaaq\Nelc\Common\Platform($identifier = 'platform-identifier', $name = 'platform-name', $language = \Msaaq\Nelc\Enums\Language::ARABIC); // required
+$platform = new \Msaaq\Nelc\Common\Platform(
+    identifier: 'platform-identifier',
+    name: 'platform-name',
+    language: \Msaaq\Nelc\Enums\Language::ARABIC,
+    nameInOtherLanguages: [
+        \Msaaq\Nelc\Enums\Language::ENGLISH->value => 'platform-name-en', // optional, bilingual platform name
+    ],
+); // required
 ```
 
 After we created our client, we can use it to send statements to the NELC LRS.
@@ -154,6 +161,13 @@ $statement->module->title = 'How to create professional course';
 $statement->module->description = 'This series will cover the most important principles of course making, marketing and content preparation.';
 $statement->module->language = $statement->language;
 $statement->module->activityType = ActivityType::COURSE;
+
+// NELC learner extensions (optional, sent when available)
+$statement->duration = 'PT02H30M00S'; // course duration in ISO 8601 format
+$statement->learnerMobileNo = '966555123456';
+$statement->learnerFullName = 'Student Name';
+$statement->learnerNationality = 'SA';
+$statement->dateOfBirth = '15/06/1995'; // dd/mm/YYYY format
 
 var_dump($statementClient->send($statement));
 ```
