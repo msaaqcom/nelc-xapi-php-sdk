@@ -21,4 +21,14 @@ enum Extension: string
     case JWS_CERTIFICATE_LOCATION = 'http://id.tincanapi.com/extension/jws-certificate-location';
 
     case PLATFORM = 'https://nelc.gov.sa/extensions/platform';
+
+    case DURATION = 'https://nelc.gov.sa/extensions/duration';
+
+    case LEARNER_MOBILE_NO = 'https://nelc.gov.sa/extensions/learner_mobile_no';
+
+    case LEARNER_FULL_NAME = 'https://nelc.gov.sa/extensions/learner_full_name';
+
+    case LEARNER_NATIONALITY = 'https://nelc.gov.sa/extensions/learner_nationality';
+
+    case DATE_OF_BIRTH = 'https://nelc.gov.sa/extensions/date_of_birth';
 }

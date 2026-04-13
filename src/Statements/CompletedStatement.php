@@ -9,9 +9,9 @@ use Msaaq\Nelc\Interfaces\StatementInterface;
 
 class CompletedStatement extends BaseStatement implements StatementInterface
 {
-    public BrowserInformation|null $browserInformation = null;
+    public ?BrowserInformation $browserInformation = null;
 
-    public Module|null $parent = null;
+    public ?Module $parent = null;
 
     public function toArray(): array
     {
@@ -36,7 +36,10 @@ class CompletedStatement extends BaseStatement implements StatementInterface
         }
 
         if ($this->browserInformation) {
-            $array['context']['extensions'] = $this->browserInformation->toArray();
+            $array['context']['extensions'] = array_merge(
+                $array['context']['extensions'],
+                $this->browserInformation->toArray()
+            );
         }
 
         return $array;
